@@ -1,4 +1,5 @@
 module Voting
+  # Replays vote facts to rebuild VoteCount and AppliedVoteFact from the event store.
   class VoteCountRebuilder
     def initialize(event_store: Rails.configuration.event_store)
       @event_store = event_store

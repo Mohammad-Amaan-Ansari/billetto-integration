@@ -4,7 +4,7 @@ module Voting
 
     def stream_names
       [
-        "Vote$#{data[:event_id]}$#{data[:user_id]}",
+        "Vote$#{data[:event_id]}$#{data[:user_id]}", # uniqueness stream for one vote per user
         "Voting$#{data[:event_id]}",
         "User$#{data[:user_id]}"
       ]

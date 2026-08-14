@@ -1,4 +1,5 @@
 class Fact < RailsEventStore::Event
+  # Rejects facts whose payload does not match the subclass SCHEMA constant.
   def self.strict(data:)
     normalized = data.transform_keys(&:to_sym)
     validate_schema!(normalized)

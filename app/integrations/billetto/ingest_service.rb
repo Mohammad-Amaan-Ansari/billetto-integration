@@ -43,6 +43,7 @@ module Billetto
 
     def mark_missing_unavailable(fetched_ids)
       if fetched_ids.empty?
+        # Avoid marking every event unavailable when the API returns an empty page.
         Rails.logger.warn("Billetto ingestion returned no events; skipping unavailability update")
         return
       end

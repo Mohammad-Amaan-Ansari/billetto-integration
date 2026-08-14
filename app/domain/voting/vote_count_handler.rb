@@ -13,6 +13,7 @@ module Voting
     private
 
     def claim_vote!(fact, event)
+      # Unique index on event_id + user_id makes projection retries idempotent.
       AppliedVoteFact.insert_all(
         [ {
           fact_id: fact.event_id,
@@ -28,6 +29,7 @@ module Voting
 
     def refresh_counts!(event)
       count = find_or_create_count(event)
+      # Row lock keeps concurrent projections from writing stale totals.
       count.with_lock do
         count.update!(
           upvotes: AppliedVoteFact.where(event_id: event.id, fact_type: EventUpvoted.name).count,

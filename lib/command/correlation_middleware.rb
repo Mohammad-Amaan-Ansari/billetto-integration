@@ -4,7 +4,7 @@ module Command
 
     def call(_command)
       previous = Thread.current[KEY]
-      Thread.current[KEY] = SecureRandom.uuid
+      Thread.current[KEY] = SecureRandom.uuid # ties published facts back to the originating command
       yield
     ensure
       Thread.current[KEY] = previous

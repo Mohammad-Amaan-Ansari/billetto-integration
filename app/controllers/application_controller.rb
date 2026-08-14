@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
   private
 
   def redirect_after_clerk_handshake
+    # Clerk completes sign-in via a redirect that carries __clerk_handshake.
     return unless params[CLERK_HANDSHAKE_PARAM].present?
 
     redirect_to clerk_path_without_handshake

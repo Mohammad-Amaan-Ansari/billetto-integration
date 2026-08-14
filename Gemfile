@@ -3,12 +3,14 @@ source "https://rubygems.org"
 ruby "3.3.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+# Minimum 8.1.3.1 patches CVE-2026-66066 in Active Storage.
 gem "rails", "~> 8.1.3", ">= 8.1.3.1"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
+# Minimum 8.0.2 patches PROXY protocol DoS CVEs.
 gem "puma", ">= 8.0.2"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -70,6 +72,7 @@ end
 gem "rails_event_store", "~> 2.18"
 gem "dry-struct", "~> 1.8"
 gem "dry-types", "~> 1.9"
+# Minimum 2.14.3 patches host-scoping and nested-params DoS CVEs.
 gem "faraday", "~> 2.14", ">= 2.14.3"
 gem "faraday-net_http", "~> 3.4"
 gem "clerk-sdk-ruby", "~> 5.1", require: "clerk"

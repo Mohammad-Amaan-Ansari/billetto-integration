@@ -4,6 +4,7 @@ module ApplicationSubscriptions
   end
 
   def self.register(event_store)
+    # Guard against duplicate subscriptions when Rails reloads in development.
     return if event_store.instance_variable_get(:@application_subscriptions_registered)
 
     handlers.each do |event_class, handler_classes|

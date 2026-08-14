@@ -27,6 +27,7 @@ module Voting
     end
 
     def existing_vote(event_id, user_id)
+      # Vote$event$user must stay empty for a user to cast their first vote.
       event_store
         .read
         .stream(vote_stream_name(event_id, user_id))
@@ -51,6 +52,7 @@ module Voting
       main_stream    = fact.stream_names.first
       linked_streams = fact.stream_names[1..]
 
+      # expected_version :none turns duplicate publishes into WrongExpectedEventVersion.
       event_store.publish(fact, stream_name: main_stream, expected_version: :none)
       linked_streams.each { |s| event_store.link(fact.event_id, stream_name: s) }
     end

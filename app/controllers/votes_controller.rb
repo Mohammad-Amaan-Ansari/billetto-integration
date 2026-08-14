@@ -9,6 +9,7 @@ class VotesController < ApplicationController
       )
     )
     @event = Event.find_by!(external_id: params[:event_id])
+    # Reset cached association so turbo_stream reads the freshly projected counts.
     @event.association(:vote_count).reset
 
     respond_to do |format|
