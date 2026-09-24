@@ -73,6 +73,6 @@ gem "rails_event_store", "~> 2.18"
 gem "dry-struct", "~> 1.8"
 gem "dry-types", "~> 1.9"
 # Minimum 2.14.3 patches host-scoping and nested-params DoS CVEs.
-gem "faraday", "~> 2.14", ">= 2.14.3"
+gem "faraday", "~> 2.14"
 gem "faraday-net_http", "~> 3.4"
 gem "clerk-sdk-ruby", "~> 5.1", require: "clerk"
